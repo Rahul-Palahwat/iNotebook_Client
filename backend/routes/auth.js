@@ -10,25 +10,28 @@ const { body, validationResult } = require('express-validator');
 
 // create a user using : post "/api/auth/". Doesn't require auth 
 // yha pr array ke andar saare validations jayege and error bhi ek array ki form m return hongi like 1 error yen and 2nd yen
-router.post('/',[
+router.post('/createuser',[
     body('name','Enter a valid name').isLength({ min: 3 }),
     body('email','Enter a valid Email').isEmail(),
     body('password','password must be atleast five characters').isLength({ min: 5 })
-],(req,res)=>{
-    // yen errors ke liye h 
+],async (req,res)=>{
+    // yen errors ke liye h , this will return bad request and the error
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // ab yen data ko save krne ke liye h 
-    User.create({
+    // ab yen data ko save krne ke liye h and check weather the user alreday exists with the same email
+    let user=await User.findOne({email: req.body.email});
+    if(user){
+      return res.status(400).json({error: "sorry email already exits"});
+    }
+   user=await User.create({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-      }).then(user => res.json(user))
-      .catch(err=> {console.log(err)
-    res.json({error: `Please enter a unique value for email`})})
+      })
+    res.json({user});
 
     // res.send(req.body);
 });

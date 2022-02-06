@@ -1,7 +1,7 @@
 const express= require('express');
 const app=express();
 
-const port=3000;
+const port=8000;
 
 // this is to import db.js to start connection to the database 
 const connectToMongo=require('./db.js');
