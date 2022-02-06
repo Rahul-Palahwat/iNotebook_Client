@@ -27,5 +27,8 @@ const UserSchema= new Schema({
 
 // now iss schema ko use krne ke liye apun log isse export krenge 
 // yha pr pehle usko model bnaya ja rha h then export kr rhe h 
-module.exports = mongoose.model('user', UserSchema);
+const User=mongoose.model('user', UserSchema);
+// for indexes 
+User.createIndexes();
+module.exports = User;
 // model ko 2 argument chiye 1 is module ka naam and second is schema 

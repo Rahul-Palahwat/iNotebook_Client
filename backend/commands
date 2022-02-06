@@ -4,3 +4,6 @@ npm i mongoose
 
 -D for dev dependencies 
 npm i -D nodemon 
+
+for validation
+npm install --save express-validator
