@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
-
+// for schemas 
+const {Schema}=mongoose;
 
 // this is schema to store data in a proper format 
 const UserSchema= new Schema({

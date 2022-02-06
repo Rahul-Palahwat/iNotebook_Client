@@ -9,6 +9,10 @@ const connectToMongo=require('./db.js');
 connectToMongo();
 
 
+// now to use req.body we is to use middleware...which will get the data in json format 
+app.use(express.json());
+
+
 // end points for requests
 //Available routes
 // ab yha pr apun log end points ko routes folder se lenge 
