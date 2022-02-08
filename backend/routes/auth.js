@@ -5,6 +5,14 @@ const router= express.Router();
 // ab yha pr models me se user module ko import krenge then usko use krke 
 const User = require('../models/User');
 
+// this is for encrypting password to save in database 
+const bcrypt = require('bcryptjs');
+
+// for authentication we will give token 
+const jwt = require('jsonwebtoken');
+// this i have to keep it secret as like api in environment varialbe
+const JWT_SECRET="Rahul'sCo$de";
+
 // this is for validation 
 const { body, validationResult } = require('express-validator');
 
@@ -28,12 +36,31 @@ router.post('/createuser',[
     if(user){
       return res.status(400).json({error: "sorry email already exits"});
     }
+
+    // yha pa password ko encrypt kr rhe h 
+    const salt= await bcrypt.genSalt(10);
+    secPass= await bcrypt.hash(req.body.password,salt);
+
+
    user=await User.create({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: secPass,
       })
-    res.json({user});
+    
+      // ab yen token ke liye h like sending token as id of that user 
+      const data={
+        user:{
+          id:user.id
+        }
+      }
+      const authtoken= jwt.sign(data, JWT_SECRET);
+      console.log(authtoken);
+      res.json({authtoken});
+
+
+    // res.json({user});
+
   } catch (error) {
       console.error(error.message);
       res.status(500).send("Some error occured");
