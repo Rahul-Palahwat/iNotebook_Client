@@ -55,7 +55,7 @@ router.post('/createuser',[
         }
       }
       const authtoken= jwt.sign(data, JWT_SECRET);
-      console.log(authtoken);
+      // console.log(authtoken);
       res.json({authtoken});
 
 
@@ -63,11 +63,54 @@ router.post('/createuser',[
 
   } catch (error) {
       console.error(error.message);
-      res.status(500).send("Some error occured");
+      res.status(500).send("Internal server error");
   }
 
     // res.send(req.body);
 });
+
+
+
+// Authenticationg a user using : post "/api/auth/login". Doesn't require auth
+router.post('/login',[
+  body('email','Enter a valid Email').isEmail(),
+  body('password','password can not be blank').exists(),
+  
+],async (req,res)=>{
+  // yen errors ke liye h , this will return bad request and the error
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const {email,password}=req.body;
+  try {
+    let user= await User.findOne({email});
+    if(!user){
+      return res.status(400).json({error:"Please try to login with correct caredentilas"})
+    }
+    const passwordCompare= await bcrypt.compare(password, user.password);
+    if(!passwordCompare){
+      return res.status(400).json({error:"Please try to login with correct caredentils"})
+    }
+    // this is the data of the user when all the datils are correct 
+    const data={
+      user:{
+        id:user.id
+      }
+    }
+    const authtoken= jwt.sign(data, JWT_SECRET);
+    // console.log(authtoken);
+    res.json({authtoken});
+
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server errror");
+}
+
+
+
+})
 
 
 // ab yha pr router ko export krenge 
