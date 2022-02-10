@@ -5,6 +5,9 @@ const router= express.Router();
 // ab yha pr models me se user module ko import krenge then usko use krke 
 const User = require('../models/User');
 
+// ab yen middleware ko use krne ke liye use import kr rhe h and usse token se id lenge and use req me bhej denge 
+var fetchuser= require('../middleware/fetchuser');
+
 // this is for encrypting password to save in database 
 const bcrypt = require('bcryptjs');
 
@@ -16,7 +19,7 @@ const JWT_SECRET="Rahul'sCo$de";
 // this is for validation 
 const { body, validationResult } = require('express-validator');
 
-// create a user using : post "/api/auth/". Doesn't require auth 
+//Route 1: create a user using : post "/api/auth/". Doesn't require auth 
 // yha pr array ke andar saare validations jayege and error bhi ek array ki form m return hongi like 1 error yen and 2nd yen
 router.post('/createuser',[
     body('name','Enter a valid name').isLength({ min: 3 }),
@@ -71,7 +74,7 @@ router.post('/createuser',[
 
 
 
-// Authenticationg a user using : post "/api/auth/login". Doesn't require auth
+//Route 2: Authenticationg a user using : post "/api/auth/login". Doesn't require auth
 router.post('/login',[
   body('email','Enter a valid Email').isEmail(),
   body('password','password can not be blank').exists(),
@@ -110,6 +113,24 @@ router.post('/login',[
 
 
 
+})
+
+
+
+//Route 3: Get logged in user details post "/api/auth/getuser". Login required
+// yha pr jo fetchuser h woh middleware h and woh async se pehle chalega 
+router.post('/getuser', fetchuser ,async (req,res)=>{
+  
+try {
+  userId=req.user.id;
+  // isse kya hoga ki user ki sarri details fetch ho jayengi except password 
+  const user= await User.findById(userId).select("-password");
+  res.send(user);
+  
+} catch (error) {
+  console.error(error.message);
+  res.status(500).send("Internal server errror");
+}
 })
 
 
