@@ -1,8 +1,13 @@
 const mongoose=require('mongoose');
-
+// for schemas 
+const {Schema}=mongoose;
 
 // this is schema to store data in a proper format 
 const NotesSchema= new Schema({
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     title:{
         type:String,
         required: true

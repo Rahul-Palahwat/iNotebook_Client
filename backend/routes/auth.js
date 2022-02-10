@@ -16,7 +16,7 @@ const jwt = require('jsonwebtoken');
 // this i have to keep it secret as like api in environment varialbe
 const JWT_SECRET="Rahul'sCo$de";
 
-// this is for validation 
+// this is for validation of input from the body
 const { body, validationResult } = require('express-validator');
 
 //Route 1: create a user using : post "/api/auth/". Doesn't require auth 
