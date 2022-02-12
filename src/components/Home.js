@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
-// ab yha pr use context ka use krne ke liye use import krna padega 
-import noteContext from "../context/notes/noteContext" ;
+import React from "react";
+
+import Notes from "./Notes";
 
 export default function Home() {
-  // ab yha pr notes ko lane ke liye 
-  const context=useContext(noteContext);
-  const {notes, setNotes}=context;
+
   return (
     <>
     <div className="container my-3">
@@ -46,12 +44,9 @@ export default function Home() {
         </button>
       </form>
       </div>
-      <div className="container my-5">
-      <h2>Your Notes</h2>
-      {notes.map((note)=>{
-        return note.title;
-      })}
-      </div>
+
+
+      <Notes/>
       
     </>
   );
