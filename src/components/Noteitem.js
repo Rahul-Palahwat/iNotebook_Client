@@ -6,8 +6,13 @@ export default function Noteitem(props) {
     <div className="col-md-3">
       <div className="card my-3">
         <div className="card-body">
-          <h5 className="card-title">{note.title}</h5>
-          <p className="card-text">{note.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, asperiores. Optio autem iusto minus, saepe facere voluptates odit, velit adipisci, deserunt omnis quos.</p>
+            <di className="d-flex align-items-center">
+            <h5 className="card-title">{note.title}</h5>
+            <i className="fa-solid fa-trash-can mx-2"></i>
+          <i className="fa-solid fa-pen-to-square mx-2"></i>
+            </di>
+          
+          <p className="card-text">{note.description}</p>
           
         </div>
       </div>

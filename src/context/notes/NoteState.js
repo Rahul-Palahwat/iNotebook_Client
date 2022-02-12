@@ -7,7 +7,7 @@ import NoteContext from "./noteContext";
 const NoteState= (props)=>{
     const notesInitial=[
         {
-          "_id": "6204bd918cc27b6481f82903",
+          "_id": "6204bd918cc27b6481f82903ss",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -25,7 +25,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204bd918cc27b6481f82903",
+          "_id": "6204bd918cc27b6481ff82903",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -34,7 +34,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204c3ee4f4c9cb84e5236a3",
+          "_id": "6204c3ee4f4c9chb84e5236a3",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -43,7 +43,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204bd918cc27b6481f82903",
+          "_id": "6204bd918cc27b6j481f82903",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -52,7 +52,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204c3ee4f4c9cb84e5236a3",
+          "_id": "6204c3ee4f4c9cb84e52f36a3",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -61,7 +61,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204c3ee4f4c9cb84e5236a3",
+          "_id": "6204c3ee4f4cw9cb84e5236a3",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -70,7 +70,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204bd918cc27b6481f82903",
+          "_id": "6204bd918cvc27b6481f82903",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -79,7 +79,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204c3ee4f4c9cb84e5236a3",
+          "_id": "6204c3ee4f4c9cbg84e5236a3",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -88,7 +88,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204bd918cc27b6481f82903",
+          "_id": "6204bd918csc27b6481f82903",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
@@ -97,7 +97,7 @@ const NoteState= (props)=>{
           "__v": 0
         },
         {
-          "_id": "6204c3ee4f4c9cb84e5236a3",
+          "_id": "6204c3ee4f4c9cb84e52g36a3",
           "user": "620242523e5e94ee6075b67c",
           "title": "New note",
           "description": "Please access the playlist",
