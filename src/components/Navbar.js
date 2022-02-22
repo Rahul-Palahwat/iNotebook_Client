@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   let location = useLocation();
-  //to get the location of our working website
-  useEffect(() => {
-    console.log(location.pathname);
-  }, [location]);
+  
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
