@@ -1,7 +1,11 @@
+var cors=require('cors');
 const express= require('express');
 const app=express();
 
 const port=8000;
+
+
+
 
 // this is to import db.js to start connection to the database 
 const connectToMongo=require('./db.js');
@@ -10,6 +14,7 @@ connectToMongo();
 
 
 // now to use req.body we is to use middleware...which will get the data in json format 
+app.use(cors());
 app.use(express.json());
 
 
