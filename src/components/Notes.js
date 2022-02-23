@@ -7,27 +7,30 @@ import Noteitem from "./Noteitem";
 export default function Notes() {
   // ab yha pr notes ko lane ke liye
   const context = useContext(noteContext);
-  const { notes, getNotes } = context;
+  const { notes, getNotes, editNote } = context;
   useEffect(() => {
     getNotes();
   }, []);
 
   // hmm ab ek state bnayenge useState hook se
   const [note, setNote] = useState({
+    id:"",
     etitle: "",
     edescription: "",
     etag: "",
   });
   const updateNote = (currentNote) => {
     ref.current.click();
-    setNote({etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag});
+    setNote({id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag});
   };
 
   const ref = useRef(null);
+  const refClose = useRef(null);
 
   const handleClick = (e) => {
-    console.log("Updating the note",note)
-    e.preventDefault();
+    console.log("Updating the note",note);
+    editNote(note.id, note.etitle, note.edescription, note.etag)
+    refClose.current.click();
     // addNote(note.title,note.description,note.tag);
   };
 
@@ -120,6 +123,7 @@ export default function Notes() {
             <div className="modal-footer">
               <button
                 type="button"
+                ref={refClose}
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
