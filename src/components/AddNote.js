@@ -11,12 +11,17 @@ export default function AddNote() {
       const [note, setNote]=useState({
         title:"",
         description:"",
-        tag:"Default"
+        tag:""
       });
 
       const handleClick=(e)=>{
         e.preventDefault();
         addNote(note.title,note.description,note.tag);
+        setNote({
+          title:"",
+          description:"",
+          tag:""
+        });
       }
 
 
@@ -42,7 +47,10 @@ export default function AddNote() {
               id="title"
               name="title"
               aria-describedby="emailHelp"
+              value={note.title}
               onChange={onChange}
+              minLength={5}
+              required
             />
             
           </div>
@@ -55,7 +63,10 @@ export default function AddNote() {
               className="form-control"
               id="description"
               name="description"
+              value={note.description}
               onChange={onChange}
+              minLength={5}
+              required
             />
           </div>
           <div className="mb-3">
@@ -67,11 +78,14 @@ export default function AddNote() {
               className="form-control"
               id="tag"
               name="tag"
+              value={note.tag}
               onChange={onChange}
+              minLength={5}
+              required
             />
           </div>
           
-          <button type="submit" className="btn btn-primary" onClick={handleClick}>
+          <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleClick}>
             Add Note
           </button>
         </form>

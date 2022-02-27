@@ -90,6 +90,8 @@ export default function Notes() {
                     aria-describedby="emailHelp"
                     value={note.etitle}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -103,6 +105,8 @@ export default function Notes() {
                     name="edescription"
                     value={note.edescription}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -116,6 +120,7 @@ export default function Notes() {
                     name="etag"
                     value={note.etag}
                     onChange={onChange}
+                    
                   />
                 </div>
               </form>
@@ -129,7 +134,7 @@ export default function Notes() {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handleClick}>
+              <button type="button" className="btn btn-primary" disabled={note.etitle.length<5 || note.edescription.length<5} onClick={handleClick}>
                 Update Note
               </button>
             </div>
@@ -138,6 +143,9 @@ export default function Notes() {
       </div>
       <div className="row my-5">
         <h2>Your Notes</h2>
+        <div className="container mx-2">
+        {notes.length===0 && `No notes to display`}
+        </div>
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} />
