@@ -31,13 +31,14 @@ router.post('/createuser',[
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    let success=false;
 
     // ab yen data ko save krne ke liye h and check weather the user alreday exists with the same email
     // try and catch is liye h ki mano kbhi bhi koi dikkat aa gyi hmare database me toh ek error hme mil jaye 
     try {
     let user=await User.findOne({email: req.body.email});
     if(user){
-      return res.status(400).json({error: "sorry email already exits"});
+      return res.status(400).json({success,error: "sorry email already exits"});
     }
 
     // yha pa password ko encrypt kr rhe h 
@@ -57,9 +58,10 @@ router.post('/createuser',[
           id:user.id
         }
       }
+      success=true;
       const authtoken= jwt.sign(data, JWT_SECRET);
       // console.log(authtoken);
-      res.json({authtoken});
+      res.json({success,authtoken});
 
 
     // res.json({user});
