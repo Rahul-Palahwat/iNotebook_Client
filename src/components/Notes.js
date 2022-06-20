@@ -1,15 +1,22 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import noteContext from "../context/notes/noteContext";
 
 import AddNote from "./AddNote";
 import Noteitem from "./Noteitem";
 
 export default function Notes(props) {
+  let navigate= useNavigate();
   // ab yha pr notes ko lane ke liye
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
   useEffect(() => {
-    getNotes();
+    if(localStorage.getItem('token')){
+      getNotes();
+    }else{
+      navigate("/login");
+    }
+    
   }, []);
 
   // hmm ab ek state bnayenge useState hook se

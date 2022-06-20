@@ -45,7 +45,8 @@ export default function Login(props) {
 
     }
   return (
-    <>
+    <div className='mt-3'>
+      <h2>Login to continue to iNotebook</h2>
     <form onSubmit={handleSubmit}>
   <div className="mb-3">
     <label htmlFor="email" className="form-label">Email address</label>
@@ -59,6 +60,6 @@ export default function Login(props) {
   
   <button type="submit" className="btn btn-primary" >Submit</button>
 </form>
-    </>
+    </div>
   )
 }

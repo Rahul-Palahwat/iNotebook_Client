@@ -28,6 +28,7 @@ export default function Signup(props) {
   const handleSubmit=async (e)=>{
       e.preventDefault();
       const {name,email,password,cpassword}=credentials;
+      console.log(name,email)
       if(cpassword===password){
       const response = await fetch(`http://localhost:8000/api/auth/createuser`,{
        
@@ -56,7 +57,8 @@ export default function Signup(props) {
 
 
   return (
-    <div className='container'>
+    <div className='container mt-3'>
+      <h2>Create an account to use iNotebook</h2>
       <form onSubmit={handleSubmit}>
   <div className="mb-3">
     <label htmlFor="name" className="form-label">Name</label>
