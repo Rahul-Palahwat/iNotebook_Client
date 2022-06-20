@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login(props) {
 
     let navigate= useNavigate();
 
@@ -37,9 +37,10 @@ export default function Login() {
             //save the auth token and redirect
             localStorage.setItem('token',json.authtoken);
             navigate("/");
+            props.showAlert("Succesfully logged In","success")
 
         }else{
-            alert("Invalid credentials");
+          props.showAlert("Invalid Details","danger")
         }
 
     }

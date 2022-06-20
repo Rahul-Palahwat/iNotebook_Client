@@ -4,7 +4,7 @@ import noteContext from "../context/notes/noteContext";
 import AddNote from "./AddNote";
 import Noteitem from "./Noteitem";
 
-export default function Notes() {
+export default function Notes(props) {
   // ab yha pr notes ko lane ke liye
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
@@ -22,6 +22,7 @@ export default function Notes() {
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag});
+    // props.showAlert("Note updated succesfully","success");
   };
 
   const ref = useRef(null);
@@ -31,6 +32,7 @@ export default function Notes() {
     console.log("Updating the note",note);
     editNote(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
+    props.showAlert("Note updated successfully","success")
     // addNote(note.title,note.description,note.tag);
   };
 
@@ -45,7 +47,7 @@ export default function Notes() {
 
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={props.showAlert}/>
       <button
         type="button"
         className="btn btn-primary d-none"
@@ -148,7 +150,7 @@ export default function Notes() {
         </div>
         {notes.map((note) => {
           return (
-            <Noteitem key={note._id} updateNote={updateNote} note={note} />
+            <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert}/>
           );
         })}
       </div>

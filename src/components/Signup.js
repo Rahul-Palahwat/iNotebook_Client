@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function Signup() {
+export default function Signup(props) {
 
 
   let navigate= useNavigate();
@@ -42,11 +42,12 @@ export default function Signup() {
       if(json.success){
           localStorage.setItem('token',json.authtoken);
           navigate("/");
+          props.showAlert("Successfully created your account","success")
       }else{
-        alert(json.error);
+        props.showAlert("Invalid credentails","danger")
       }
     }else{
-      alert("Password does not match");
+      props.showAlert("Password did not match","danger")
     }
 
   }

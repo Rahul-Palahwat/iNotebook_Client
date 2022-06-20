@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 // ab yha pr use context ka use krne ke liye use import krna padega 
 import noteContext from "../context/notes/noteContext" ;
 
-export default function AddNote() {
+export default function AddNote(props) {
       // ab yha pr notes ko lane ke liye 
       const context=useContext(noteContext);
       const {addNote}=context;
@@ -22,6 +22,7 @@ export default function AddNote() {
           description:"",
           tag:""
         });
+        props.showAlert("Note added successfully","success")
       }
 
 
