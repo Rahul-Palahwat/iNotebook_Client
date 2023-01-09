@@ -5,7 +5,9 @@ import NoteContext from "./noteContext";
 
 // yen yha pr ek function h jha hmme jo kuch bhi chiye hoga woh value se lenge 
 const NoteState= (props)=>{
-  const host="http://localhost:8000";
+  const host="https://i-notebook-server-jbg8.vercel.app";
+  // const host=process.env.host;
+
     const notesInitial=[]
 
       const [notes, setNotes]= useState(notesInitial)

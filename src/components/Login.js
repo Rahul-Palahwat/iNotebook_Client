@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+// require('dotenv').config()
+
 export default function Login(props) {
 
     let navigate= useNavigate();
@@ -24,7 +26,9 @@ export default function Login(props) {
 
     const handleSubmit=async (e)=>{
         e.preventDefault();
-        const response = await fetch(`http://localhost:8000/api/auth/login`, {
+        const host = "https://i-notebook-server-jbg8.vercel.app";
+        // const host = process.env.host;
+        const response = await fetch(`${host}/api/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

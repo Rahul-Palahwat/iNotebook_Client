@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+// require('dotenv').config()
+
 export default function Signup(props) {
 
 
@@ -30,7 +32,9 @@ export default function Signup(props) {
       const {name,email,password,cpassword}=credentials;
       console.log(name,email)
       if(cpassword===password){
-      const response = await fetch(`http://localhost:8000/api/auth/createuser`,{
+        const host = "https://i-notebook-server-jbg8.vercel.app";
+        // const host = process.env.host;
+      const response = await fetch(`${host}/api/auth/createuser`,{
        
         method: 'POST',
         headers: {
